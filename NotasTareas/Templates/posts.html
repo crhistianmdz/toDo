@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
      
      {% block content %}
      
@@ -46,9 +47,9 @@
                                 <a href="post/{{post.id}}/edit"class="btn btn-warning btn-sm">Editar</a>
                             </td>
                             <td width='10px'>
-                                <form action="post/{{post.id}}/delete" method="POST">{% csrf_token %}
+                                <form action="/post/{{ post.id }}/delete" method="POST">{% csrf_token %}
                                     <input type="hidden" name="id" id="" value="{{post.id}}">
-                                    <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
+                                    <input  type="submit" class="btn btn-danger btn-sm" value="Eliminar">
                                 </form>
                             </td>
                         </tr>

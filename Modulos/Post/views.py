@@ -1,4 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib import messages
+
 from .models import Post
 from .forms import PostForm
 
@@ -10,9 +12,9 @@ def post_list(request):
             post=Post.objects.get(id=request.POST.get('id'))
             post.estado='C'
             post.save()
-            return redirect('/?exitoso')
+            messages.success(request,'tarea cerrada exitosamente')
         except:
-            return redirect('/?noexitoso')
+            return redirect('/')
         
     posts=Post.objects.all()
     return render(request,'posts.html',{'posts':posts})
@@ -31,6 +33,7 @@ def post_new(request):
         if form.is_valid():
             try:
                 form.save()
+                messages.success(request,'tarea creada con exito')
                 redirect(to='posts_list')
             except:
                 data['mensaje']=form
@@ -46,6 +49,7 @@ def post_edit(request,id):
         if form.is_valid():
             try:
                 form.save()
+                messages.success(request,'tarea modificada con exito')
                 return redirect(to='posts_list')
             except:
                 data['form']=form
@@ -55,5 +59,6 @@ def post_delete(request,id):
     if request.method=='POST':
         post=get_object_or_404(Post, id=id)
         post.delete()
+        messages.success(request,'tarea eliminada con exito')
     
     return redirect(to='posts_list')

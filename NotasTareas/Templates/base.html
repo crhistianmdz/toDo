@@ -45,33 +45,13 @@
     {% endblock content %}
 
         <!-- Footer -->
-    <footer class="footer text-faded text-center py-5">
+    <footer class="footer text-faded text-center ">
       <div class="container">
-        <p class="m-0">
-	        <a href="#" class="link">
-	          <span class="fa-stack fa-lg">
-	            <i class="fa fa-circle fa-stack-2x"></i>
-	            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-	          </span>
-	        </a>
-	        <a href="#" class="link">
-	          <span class="fa-stack fa-lg">
-	            <i class="fa fa-circle fa-stack-2x"></i>
-	            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-	          </span>
-	        </a>
-	        <a href="#" class="link">
-	          <span class="fa-stack fa-lg">
-	            <i class="fa fa-circle fa-stack-2x"></i>
-	            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-	          </span>
-	        </a>
-	    </p>
         <p class="m-0 mbt">
         	<a href="sample.html" class="link">Política de privacidad</a> ·
         	<a href="sample.html" class="link">Aviso legal</a> ·
         	<a href="sample.html" class="link">Cookies</a>
-		</p>
+		    </p>
         <p class="m-0 mbt1">&copy; Gestión de Pedidos 2020</p>
       </div>
 	</footer>
@@ -79,5 +59,21 @@
     <!-- Bootstrap -->
     <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            {% if messages %}
+            {% for m in messages %}
+                
+                <script>
+                    Swal.fire({
+                        'title':'Felicitaciones',
+                        'text':'{{m}}',
+                        'icon':'success',
+                    })
+                    console.log('{{m}}')
+                </script>
+            {% endfor %}
+        {% endif %}
+
+    {% block js %}{% endblock js %}
 </body>
 </html>
