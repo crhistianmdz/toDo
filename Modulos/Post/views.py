@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
+from rest_framework import viewsets #para la api
 
 from .models import Post
 from .forms import PostForm
+from .serializers import PostSerializers
 
 # Create your views here.
 
@@ -62,3 +64,7 @@ def post_delete(request,id):
         messages.success(request,'tarea eliminada con exito')
     
     return redirect(to='posts_list')
+
+class PostViewset(viewsets.ModelViewSet):
+    queryset=Post.objects.all()
+    serializer_class=PostSerializers
